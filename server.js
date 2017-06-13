@@ -34,11 +34,12 @@ var discovery = new DiscoveryV1({
   version_date:'2016-12-01'
 });
 
+var count = 7;
 //storing function call in express local module named call
 app.locals.call = discovery.query({
     environment_id: process.env.ENVIRONMENT_ID,
     collection_id: process.env.COLLECTION_ID,
-        count: 7,
+        count: count,
         company: "microsoft"
   }, function(err, response) {
         if (err) {
@@ -58,6 +59,8 @@ app.locals.call = discovery.query({
           var sentiment = a / b;
           //storing result in express local module named sentiment
           app.locals.sentiment = sentiment;
+          app.locals.count = count;
+
    }}
  );
 
