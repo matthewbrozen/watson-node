@@ -14,4 +14,4 @@ Then add a .env file and add you credentials from Bluemix
 
 "node index.js"
 
-Make changes to the "company: "microsoft" " in line 18 to see differenet company results and the else statement to see different results of the response by drilling into the response object.
+Make changes to the "company: "microsoft" " in line 18 to see different company results and the else statement to see different results of the response by drilling into the response object.
