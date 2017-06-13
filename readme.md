@@ -5,3 +5,9 @@ This is a proto type node server to connect with the watson discovery service
 ## Getting started
 
 In order to get this program up and running you will need to do several things. First in the command line within the directory type
+
+"npm install"
+
+"npm install --save dotenv"
+
+Then add a .env file and add you credentials from Bluemix
