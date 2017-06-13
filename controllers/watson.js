@@ -12,7 +12,6 @@ var discovery = new DiscoveryV1({
   version_date:'2016-12-01'
 });
 
-//storing function call in express local module named call
 discovery.query({
     environment_id: process.env.ENVIRONMENT_ID,
     collection_id: process.env.COLLECTION_ID,

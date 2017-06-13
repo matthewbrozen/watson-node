@@ -8,10 +8,10 @@ In order to get this program up and running you will need to do several things. 
 
 "npm install"
 
-"npm install --save dotenv"
-
 Then add a .env file and add you credentials from Bluemix
 
-"node index.js"
+"node server.js" or
 
-Make changes to the "company: "microsoft" " in line 18 to see different company results and the else statement to see different results of the response by drilling into the response object.
+Make changes to the "company: "microsoft" " line 33 in the the server function app.locals.call starting on line 29 to see different company results and the else statement to see different results of the response by drilling into the response object.
+
+Alternatively use the watson.js file and connect the company as a variable and the return to a express local export to a controller function to use in a embedded view or distributed front end.
