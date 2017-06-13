@@ -6,6 +6,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//database set up
+var mongoose = require('mongoose');
+
 //Watson Discovery Service Integration
 var watson = require('watson-developer-cloud');
 var auth = require('./auth.js'); // you'll have to edit this file to include your credentials
@@ -14,9 +17,15 @@ var DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
 //view routing
 var routes = require('./routes/index');
+var sentiments = require('./routes/sentiment');
 
 //express declaration
 var app = express();
+
+//database connection deployed and local
+var db = process.env.MONGODB_URI || 'mongodb://localhost:27017/watsonapi'
+mongoose.connect(db)
+mongoose.Promise = global.Promise
 
 //Watson Discovery Service instansiation
 var discovery = new DiscoveryV1({
@@ -69,6 +78,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/sentiments', sentiments);
 
 //cors header function
 function allowCors(req, res, next) {
