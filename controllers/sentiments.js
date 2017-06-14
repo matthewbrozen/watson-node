@@ -19,6 +19,14 @@ var express = require('express');
 var app = express();
 
 
+//get function
+function index(req, res, next) {
+  Sentiment.find({}, function(err, sentiments) {
+    if (err) throw err;
+    res.json({allSentiments: sentiments});
+  }).select('-_v');
+}
+
 //post function
 function callWatson(req, res, next){
 
@@ -54,29 +62,6 @@ discovery.query({
 }
 
 module.exports = {
+  index: index,
   callWatson: callWatson
-}
-
-
-
-
-
-
-function getSecret() {
-    var secret = '';
-
-    db.transaction(
-        function (transaction) {
-            transaction.executeSql(
-                'SELECT * FROM table LIMIT 1;',
-                null,
-                function(transaction, result) {
-                    var row = result.rows.item(0);
-                    secret = row.secret;
-                }, errorHandler
-            );
-        }
-    )
-
-  return secret;
 }

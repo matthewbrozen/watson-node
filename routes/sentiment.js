@@ -9,6 +9,7 @@ router.use(function(req, res, next){
   next();
 });
 
+router.get('/', sentimentsController.index);
 router.post('/', sentimentsController.callWatson);
 
 module.exports = router;

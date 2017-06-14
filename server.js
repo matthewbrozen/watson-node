@@ -28,49 +28,6 @@ mongoose.connect(db)
 mongoose.Promise = global.Promise
 
 
-
-//Watson Discovery Service instansiation
-var discovery = new DiscoveryV1({
-  username: process.env.USERNAME,
-  password: process.env.PASSWORD,
-  version_date:'2016-12-01'
-});
-
-
-var count = 7;
-app.locals.count = count;
-//storing function call in express local module named call
-discovery.query({
-    environment_id: process.env.ENVIRONMENT_ID,
-    collection_id: process.env.COLLECTION_ID,
-        count: count,
-        company: "microsoft",
-  }, function(err, response) {
-        if (err) {
-          console.error(err);
-        } else {
-          var a = 0;
-          var b = 0;
-          for(i=0; i < response.results.length; i++){
-            if (typeof response.results[i].docSentiment != 'undefined'){
-              var a = (a + parseFloat(response.results[i].docSentiment.score));
-              b++;
-          }
-
-          }
-
-          var score = a / b;
-
-          app.locals.score = score;
-
-          app.locals.count = count;
-
-
-   }
- }
- );
-
-
 //allow cors declared below
 app.use(allowCors);
 
@@ -97,7 +54,7 @@ function allowCors(req, res, next) {
 
   // Handle "preflight" requests.
   if ('OPTIONS' == req.method) {
-    res.send(200);
+    res.sendStatus(200);
   } else {
     next();
   }
