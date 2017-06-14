@@ -27,6 +27,8 @@ var db = process.env.MONGODB_URI || 'mongodb://localhost:27017/watsonapi'
 mongoose.connect(db)
 mongoose.Promise = global.Promise
 
+
+
 //Watson Discovery Service instansiation
 var discovery = new DiscoveryV1({
   username: process.env.USERNAME,
@@ -34,13 +36,15 @@ var discovery = new DiscoveryV1({
   version_date:'2016-12-01'
 });
 
+
 var count = 7;
+app.locals.count = count;
 //storing function call in express local module named call
-app.locals.call = discovery.query({
+discovery.query({
     environment_id: process.env.ENVIRONMENT_ID,
     collection_id: process.env.COLLECTION_ID,
         count: count,
-        company: "microsoft"
+        company: "microsoft",
   }, function(err, response) {
         if (err) {
           console.error(err);
@@ -49,19 +53,21 @@ app.locals.call = discovery.query({
           var b = 0;
           for(i=0; i < response.results.length; i++){
             if (typeof response.results[i].docSentiment != 'undefined'){
-              // console.log(response.results[5]);
               var a = (a + parseFloat(response.results[i].docSentiment.score));
               b++;
           }
 
           }
 
-          var sentiment = a / b;
-          //storing result in express local module named sentiment
-          app.locals.sentiment = sentiment;
+          var score = a / b;
+
+          app.locals.score = score;
+
           app.locals.count = count;
 
-   }}
+
+   }
+ }
  );
 
 

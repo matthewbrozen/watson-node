@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var sentimentSchema = mongoose.Schema({
-    name: String,
+    company: String,
+    count: Number,
     score: Number
 });
 

@@ -4,6 +4,11 @@ var auth = require('./auth.js'); // you'll have to edit this file to include you
 require('dotenv').config()
 var DiscoveryV1 = require('watson-developer-cloud/discovery/v1');
 
+//express
+var express = require('express');
+
+//express declaration
+var app = express();
 
 //Watson Discovery Service instansiation
 var discovery = new DiscoveryV1({
@@ -33,9 +38,9 @@ discovery.query({
           }
 
           var sentiment = a / b;
+          return sentiment;
           //storing result in express local module named sentiment
           // app.locals.sentiment = sentiment;
-
-          console.log(sentiment);
+          app.locals.watson = sentiment;
    }}
  );
