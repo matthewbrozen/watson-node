@@ -74,3 +74,8 @@ Make a GET call to the deployed API at https://genesiswatson.herokuapp.com/ to r
     __v: 0
     }
   ]"
+
+
+  ## Deployment
+
+  This API is hosted by heroku and can be found at https://genesiswatson.herokuapp.com/.
