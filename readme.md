@@ -1,6 +1,6 @@
 # Node Watson Discovery Service Server
 
-This is a prototype node server to connect with the Watson Discovery Public News API.
+This is a prototype MEN stack API to connect with the Watson Discovery Public News API.
 
 ## Getting started
 
