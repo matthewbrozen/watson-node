@@ -20,6 +20,57 @@ The name of the local database collection should be watsonapi after you have the
 
 Go to localhost:3000 in the browser
 
-Make changes to the "company: "microsoft" " line 33 in the the server function app.locals.call starting on line 29 to see different company results and the else statement to see different results of the response by drilling into the response object.
+## Making API Calls
 
-Alternatively use the watson.js file and connect the company as a variable and the return to a express local export to a controller function to use in a embedded view or distributed front end. If you want to develop using this approach you also need to load your .env file into these controller functions.
+This API has two RESTful routes set up; GET (all), POST (one).
+
+Make a POST call to the deployed API at https://genesiswatson.herokuapp.com/ with a company as a string and a count as a number and you get a new record with the sentiment score returned from Watson with the company and count results.
+Sample return
+
+"{
+_id: "5941cbf73e90d20004b7f701",
+score: 0.011065000000000005,
+count: 2,
+company: "Google",
+__v: 0
+}"
+
+Make a GET call to the deployed API at https://genesiswatson.herokuapp.com/ to return all the records in the database. Sample return
+
+"{ allSentiments: [
+    {
+    _id: "5941c9672f7ee60004416e25",
+    score: 0.125482,
+    count: 1,
+    company: "Mircosoft",
+    __v: 0
+    },
+    {
+    _id: "5941cbf73e90d20004b7f701",
+    score: 0.011065000000000005,
+    count: 2,
+    company: "Google",
+    __v: 0
+    },
+    {
+    _id: "5941cc013e90d20004b7f702",
+    score: 0.011065000000000005,
+    count: 3,
+    company: "IBM",
+    __v: 0
+    },
+    {
+    _id: "5941cc0d3e90d20004b7f703",
+    score: 0.009537546666666669,
+    count: 4,
+    company: "Tesla",
+    __v: 0
+    },
+    {
+    _id: "5941cc143e90d20004b7f704",
+    score: 0.10086616000000001,
+    count: 5,
+    company: "Boeing",
+    __v: 0
+    }
+  ]"
