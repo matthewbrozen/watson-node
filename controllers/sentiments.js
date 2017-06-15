@@ -18,6 +18,21 @@ var Sentiment = require('../models/sentiment');
 var express = require('express');
 var app = express();
 
+app.use(allowCors);
+
+//cors header function
+function allowCors(req, res, next) {
+  res.header('Access-Control-Allow-Origin',  '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+
+  // Handle "preflight" requests.
+  if ('OPTIONS' == req.method) {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+}
 
 //get function
 function index(req, res, next) {
@@ -29,7 +44,6 @@ function index(req, res, next) {
 
 //post function
 function callWatson(req, res, next){
-
 discovery.query({
       environment_id: process.env.ENVIRONMENT_ID,
       collection_id: process.env.COLLECTION_ID,
