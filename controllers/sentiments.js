@@ -66,12 +66,13 @@ discovery.query({
             // console.log(" a is " + a);
             // console.log(" b is " + b);
             // var score = a / b;
-            
+
             var sentiment = new Sentiment();
             sentiment.company = req.body.company;
             sentiment.count = req.body.count;
             // sentiment.score = score;
             sentiment.response = response.results[0].blekko.twitter.title;
+            sentiment.issue = response.results[0].enrichedTitle.statusInfo;
             sentiment.count = b;
             sentiment.score = a;
             sentiment.save(function(err, sentiment) {

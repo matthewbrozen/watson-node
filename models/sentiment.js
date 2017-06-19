@@ -4,7 +4,8 @@ var sentimentSchema = mongoose.Schema({
     company: String,
     count: Number,
     score: Array,
-    response: String
+    response: String,
+    issue: String
 });
 
 var Sentiment = mongoose.model("Sentiment", sentimentSchema);
